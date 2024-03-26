@@ -708,7 +708,292 @@ logrotate
 =========================================================
 
 
+ Advanced Linux Networking commands:
+
+1. ifconfig:
+
+Linux ifconfig stands for interface configurator. It is one of the most basic commands used in network inspection. 
+
+ifconfig is used to initialize an interface, configure it with an IP address, and enable or disable it. 
+
+It is also used to display the route and the network interface. 
+
+Basic information displayed upon using ifconfig are:
+
+IP address
+MAC address
+MTU(Maximum Transmission Unit) 
+
+ifconfig eth0
+ifconfig lo
+
+To assign an IP address and Gateway to an interface
+
+To enable an interface : 	ifup eth0 
+
+To disable an interface: 	ifdown eth0 
+
+
+2. ip :
+
+This is the latest and updated version of ifconfig command and used to get the details of a specific interface.
+
+ip a 
+ip addr
+
+
+3. traceroute: 
+
+Linux traceroute is one of the most useful commands in networking. 
+It is used to troubleshoot the network. It detects the delay and determines the pathway to your target.
+
+traceroute <destination>
+
+
+$ traceroute google.com
+
+The output provides the following information:
+
+The specified hostname
+Size of the packets
+The maximum number of hops required.
+The IP address.
+
+4.tracepath:
+
+Linux tracepath is similar to traceroute command. It is used to detect network delays. However, it doesn't require root privileges.
+
+It traces the route to the specified destination and identifies each hop in it. 
+If your network is weak, it recognizes the point where the network is weak.
+
+tracepath <destination> 
+
+5. Ping: 
+
+Linux ping is one of the most used network troubleshooting commands. It basically checks for the network connectivity between two nodes.
+
+ping stands for Packet INternet Groper.
+
+The ping command sends the ICMP echo request to check the network connectivity.
+
+$ ping google.com
+
+$ ping -D google.com   -> Shows detailed Timestamp
+
+ping -c 4 google.com   ->  limit the packets up to 4.
+
+
+6. netstat
+
+Linux netstat command refers to the network statistics. 
+
+It provides statistical figures about different interfaces which include open sockets, routing tables, and connection information.
+
+ To display the programs with the open socket:
  
+ netstat -p
+
+ To get the details of the ports:
+ 
+ netstat -s
+
+ To get the information of the routing table:
+ 
+ netstat -r
+
+
+7.ss
+Linux ss command is the replacement for netstat command. It is regarded as a much faster and more informative command than netstat.
+
+The faster response of ss is possible as it fetches all the information from within the kernel userspace. 
+
+Listing listening and connected ports of TCP, UDP and Unix: 
+
+If you want to list connected as well as listening ports for TCP, UDP and Unix use -t, -u and -x respectively with a command.
+
+ss -ta  
+ss -ua  
+ss -xa  
+
+Listing listening Ports of TCP, UDP and Unix: 
+
+If you want to list listening ports for TCP, UDP and Unix use -t, -u and -x respectively with l command.
+
+ss -lt  
+ss -lu  
+ss -lx  
+
+8.dig
+Linux dig command stands for Domain Information Groper. This command is used in DNS lookup to query the DNS name server. It is also used to troubleshoot DNS related issues.
+
+It is mainly used to verify DNS mappings, MX Records, host addresses, and all other DNS records for a better understanding of the DNS topography.
+
+dig command outputs the A records by default. If you want to specifically search for MX or NS type, use the syntax below.
+
+ $ dig google.com MX
+
+ $ dig google.com ANY
+
+
+9.nslookup
+
+Linux nslookup is also a command used for DNS related queries.
+
+10.route
+
+Linux route command displays and manipulates the routing table existing for your system.
+
+A router is basically used to find the best way to send the packets across to a destination.
+
+Displaying numerical IP address
+
+	route -n
+
+Routing cache information
+
+	route -Cn  
+
+11.host
+
+Linux host command displays the domain name for a given IP address and IP address for a given hostname.
+
+It is also used to fetch DNS lookup for DNS related query.
+
+
+12.arp
+
+Linux arp command stands for Address Resolution Protocol. It is used to view and add content to the kernel's ARP table.
+
+arp
+
+arp -n
+
+13.iwconfig
+
+Linux iwconfig is used to configure the wireless network interface. It is used to set and view the basic WI-FI details like SSID and encryption.
+
+14.hostname
+
+Linux hostname is the simple command used to view and set the hostname of a system
+
+To set the hostname:
+
+ sudo hostname <newName>
+
+15. curl & wget:
+
+Linux curl and wget commands are used in downloading files from the internet through CLI. 
+
+The curl command has to be used with the option "O" to fetch the file, while the wget command is used directly.
+
+curl -O google.com/doodles/childrens-day-2014-multiple-countries  
+
+
+wget google.com/doodles/childrens-day-2014-multiple-countries  
+
+
+16.mtr:
+
+Linux mtr command is a combination of ping and the traceroute command. 
+It continuously displays information regarding the packets sent with the ping time of each hop. 
+It is also used to view the network issues.
+
+mtr google.com
+
+
+17.whois:
+
+Linux whois command is used to fetch all the information related to a website. 
+
+You can get all the information about a website including the registration and the owner information.
+
+whois google.com 
+
+18.ifplugstatus
+Linux ifplugstatus command is used to check if a cable is plugged into the network interface. 
+
+
+19.iftop
+Linux iftop command is used in traffic monitoring. 
+
+20.tcpdump:
+
+Linux tcpdump command is the most used command in network analysis among other Linux network commands. It captures the traffic that is passing through the network interface and displays it. 
+
+This kind of access to the packet will be crucial when troubleshooting the network.
+
+yum install tcpdump
+
+
+sudo tcpdump
+
+This will capture the packets from the current interface of the network through which the system is connected to the internet. 
+
+ifconfig 
+
+To capture packets from a specific network interface = sudo tcpdump -i eth0
+ 
+ This command will now capture the packets from eth0 network interface. 
+
+
+sudo tcpdump -D
+
+To display all available interfaces
+
+
+
+
+
+
+
+==============================================================================
+Sree:
+
+What is the awk command in Linux, and how is it used for text processing with example?
+How can you extract the text between two specific patterns in a file using sed?
+How does the sort command work, and how can you use it to sort a file numerically?
+What is the tr command used for, and provide an example of its usage.
+Explain the difference between the kill and kill -9 commands when terminating processes.
+Describe the purpose of the top command in Linux, and provide examples of its usage.
+Explain the role of the iptables command in managing firewall rules with examples.
+What is the difference between TCP and UDP, and when would you use one over the other?
+Explain how to pause and resume processes using the Ctrl-Z, bg, and fg commands. Example ?
+How can you configure a Linux system as a DHCP server to assign IP addresses to clients?
+
+
+
+Hari:
+
+Explain the differences between grep, sed, and awk with proper examples.
+What is the purpose of the uniq command in text processing? How does it remove duplicate lines?
+Explain the difference between wc -l and wc -w commands in Linux.
+What is the purpose of the ps command, and how can you list all processes running under a specific user?
+How do you use the nohup command to run a process in the background even after closing the terminal?
+How can you find the process ID (PID) of a running process using the pgrep command?
+How can you display the routing table in Linux using the netstat or ip route command? Show the difference?
+What is port forwarding, and how do you set it up using iptables?
+Explain the purpose of the traceroute command and how it works to trace the path of network packets.
+Describe the use of the ss command in displaying socket statistics in Linux with example?
+
+============================================================================================
+
+#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd 
+systemctl enable httpd 
+echo "Hello World" > /var/www/html/index.html 
+
+
+=========================================================================================
+
+
+
+
+
+
+
+
 
 		 
 
